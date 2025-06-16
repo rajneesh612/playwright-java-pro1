@@ -13,6 +13,7 @@ public class LoginPage {
     private Locator passwordInput;
     private Locator loginButton;
     private Locator loginLink;
+    private Locator logoutBtn;
 
 
     // Constructor
@@ -26,6 +27,7 @@ public class LoginPage {
         passwordInput = page.locator("//input[@data-qa='login-password']");
         loginButton = page.locator("//button[@data-qa='login-button']");
         loginLink = page.locator("//a[@href='/login']");
+        logoutBtn = page.locator("//a[normalize-space()='Logout']");
     }
 
 
@@ -57,6 +59,13 @@ public class LoginPage {
         enterUserEmail(username);
         enterPassword(password);
         clickLogin();
+
     }
+
+    public String getLogoutText(){
+        return logoutBtn.textContent();
+    }
+
+
 
 }

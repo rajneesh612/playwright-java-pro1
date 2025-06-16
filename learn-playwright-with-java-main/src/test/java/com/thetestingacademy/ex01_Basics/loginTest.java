@@ -1,6 +1,7 @@
 package com.thetestingacademy.ex01_Basics;
 
 import com.microsoft.playwright.*;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -33,10 +34,7 @@ public class loginTest extends BaseTest {
         loginPage.navigateTo(baseUrl);
 //        System.out.println(page.title());
         loginPage.login(email, password );
-
-
-
-
+        Assert.assertEquals(loginPage.getLogoutText()," Logout");
 //        assertEquals(page.title(), "Learn Software Testing & Test Automation");
 //        assertTrue(page.title().contains("Learn Software Testing"));
         browser.close();
