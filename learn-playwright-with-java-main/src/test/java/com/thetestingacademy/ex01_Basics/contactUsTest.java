@@ -1,19 +1,22 @@
 package com.thetestingacademy.ex01_Basics;
 
-import com.microsoft.playwright.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.ContactUsPage;
+import pages.HomePage;
 import pages.LoginPage;
+import pages.ProductPage;
 import utils.BaseTest;
 import utils.ConfigReader;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-public class loginTest extends BaseTest {
+public class contactUsTest extends BaseTest {
     private LoginPage loginPage;
+    private HomePage homePage;
+    private ProductPage productPage;
+    private ContactUsPage contactUsPage;
+
 
 
     @BeforeClass
@@ -23,7 +26,7 @@ public class loginTest extends BaseTest {
     }
 
     @Test
-    public void testLoginValidUser(){
+    public void contactSupport() {
 //        Playwright playwright = Playwright.create();
 //        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
 //        Page page = browser.newPage();
@@ -33,16 +36,14 @@ public class loginTest extends BaseTest {
 
         loginPage.navigateTo(baseUrl);
 //        System.out.println(page.title());
-        loginPage.login(email, password );
-        Assert.assertEquals(loginPage.getLogoutText()," Logout");
-//        assertEquals(page.title(), "Learn Software Testing & Test Automation");
-//        assertTrue(page.title().contains("Learn Software Testing"));
-
+        homePage = loginPage.login(email, password);
+        contactUsPage = homePage.clickontheContactUsBtn();
+        contactUsPage.contact_support();
+        Assert.assertEquals(contactUsPage.get_success_msg_text(),"Success! Your details have been submitted successfully.");
     }
 
     @AfterClass
     public void cleanup() {
         teardown();
     }
-
 }

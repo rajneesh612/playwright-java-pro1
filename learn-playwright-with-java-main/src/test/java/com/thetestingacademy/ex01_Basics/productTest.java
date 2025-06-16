@@ -1,19 +1,21 @@
 package com.thetestingacademy.ex01_Basics;
 
-import com.microsoft.playwright.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.LoginPage;
+import pages.ProductPage;
 import utils.BaseTest;
 import utils.ConfigReader;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
-public class loginTest extends BaseTest {
+public class productTest extends BaseTest {
     private LoginPage loginPage;
+    private HomePage homePage;
+    private ProductPage productPage;
 
 
     @BeforeClass
@@ -23,7 +25,7 @@ public class loginTest extends BaseTest {
     }
 
     @Test
-    public void testLoginValidUser(){
+    public void addToCart(){
 //        Playwright playwright = Playwright.create();
 //        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
 //        Page page = browser.newPage();
@@ -33,10 +35,11 @@ public class loginTest extends BaseTest {
 
         loginPage.navigateTo(baseUrl);
 //        System.out.println(page.title());
-        loginPage.login(email, password );
-        Assert.assertEquals(loginPage.getLogoutText()," Logout");
-//        assertEquals(page.title(), "Learn Software Testing & Test Automation");
-//        assertTrue(page.title().contains("Learn Software Testing"));
+        homePage =  loginPage.login(email, password );
+        productPage = homePage.clickOnTheProductBtn();
+        Assert.assertEquals(ProductPage.getAddedText(),"Your product has been added to cart.");
+
+
 
     }
 
@@ -46,3 +49,5 @@ public class loginTest extends BaseTest {
     }
 
 }
+
+

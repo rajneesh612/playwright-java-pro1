@@ -54,11 +54,12 @@ public class LoginPage {
         loginButton.click();
     }
 
-    public void login(String username, String password) {
+    public HomePage login(String username, String password) {
         clickOnLoginLink();
         enterUserEmail(username);
         enterPassword(password);
         clickLogin();
+        return new HomePage(page);
 
     }
 

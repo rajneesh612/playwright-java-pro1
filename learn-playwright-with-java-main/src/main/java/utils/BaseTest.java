@@ -12,7 +12,7 @@ public class BaseTest {
     public static void setup() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions().setHeadless(Boolean.parseBoolean(ConfigReader.get("headless")))
+                new BrowserType.LaunchOptions().setSlowMo(400).setHeadless(Boolean.parseBoolean(ConfigReader.get("headless")))
         );
         context = browser.newContext();
         page = context.newPage();
