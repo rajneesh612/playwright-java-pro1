@@ -1,6 +1,7 @@
 package utils;
 
 import com.microsoft.playwright.*;
+import pages.LoginPage;
 
 public class BaseTest {
 
@@ -8,6 +9,7 @@ public class BaseTest {
     protected static Browser browser;
     protected static BrowserContext context;
     protected static Page page;
+    private LoginPage loginPage;
 
     public static void setup() {
         playwright = Playwright.create();

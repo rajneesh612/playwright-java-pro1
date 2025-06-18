@@ -48,12 +48,17 @@ public class ContactUsPage {
             enter_name();
             enter_email();
             enter_subject();
-            click_on_the_submit_btn();
-        page.onDialog(dialog -> {
-            System.out.println("Alert message: " + dialog.message());
+        // Set up dialog handler
+        page.onceDialog(dialog -> { //- ensures it only listens for the next dialog (for single alert)
+            System.out.println("Press OK to proceed!: " + dialog.message());
+
+            // Accept the alert (click OK)
             dialog.accept();
+
+            // If you want to click Cancel instead, use:
+            // dialog.dismiss();
         });
-        page.evaluate("alert('This is an alert!')");
+        click_on_the_submit_btn();
 
     }
 

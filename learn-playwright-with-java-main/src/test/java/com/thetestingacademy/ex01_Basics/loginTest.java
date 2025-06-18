@@ -6,6 +6,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import pages.HomePage;
 import utils.BaseTest;
 import utils.ConfigReader;
 
@@ -14,6 +15,7 @@ import static org.testng.Assert.assertTrue;
 
 public class loginTest extends BaseTest {
     private LoginPage loginPage;
+    private HomePage homePage;
 
 
     @BeforeClass
@@ -24,19 +26,10 @@ public class loginTest extends BaseTest {
 
     @Test
     public void testLoginValidUser(){
-//        Playwright playwright = Playwright.create();
-//        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-//        Page page = browser.newPage();
         String baseUrl = ConfigReader.get("url");
-        String email = ConfigReader.get("email");
-        String password = ConfigReader.get("password");
-
         loginPage.navigateTo(baseUrl);
-//        System.out.println(page.title());
-        loginPage.login(email, password );
+        homePage = loginPage.loginValidCredentials();
         Assert.assertEquals(loginPage.getLogoutText()," Logout");
-//        assertEquals(page.title(), "Learn Software Testing & Test Automation");
-//        assertTrue(page.title().contains("Learn Software Testing"));
 
     }
 

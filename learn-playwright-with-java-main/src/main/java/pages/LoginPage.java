@@ -34,7 +34,6 @@ public class LoginPage {
 
     // Actions
     public void navigateTo(String url) {
-//        String baseUrl = ConfigReader.get("url");
         page.navigate(url); // Replace with actual URL
     }
 
@@ -61,6 +60,16 @@ public class LoginPage {
         clickLogin();
         return new HomePage(page);
 
+    }
+    public HomePage  loginValidCredentials(){
+//        String baseUrl = ConfigReader.get("url");
+        String email = ConfigReader.get("email");
+        String password = ConfigReader.get("password");
+        clickOnLoginLink();
+        enterUserEmail(email);
+        enterPassword(password);
+        clickLogin();
+        return new HomePage(page);
     }
 
     public String getLogoutText(){

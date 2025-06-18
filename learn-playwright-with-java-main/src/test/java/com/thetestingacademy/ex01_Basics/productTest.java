@@ -26,16 +26,9 @@ public class productTest extends BaseTest {
 
     @Test
     public void addToCart(){
-//        Playwright playwright = Playwright.create();
-//        Browser browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
-//        Page page = browser.newPage();
-        String baseUrl = ConfigReader.get("url");
-        String email = ConfigReader.get("email");
-        String password = ConfigReader.get("password");
-
+          String baseUrl = ConfigReader.get("url");
         loginPage.navigateTo(baseUrl);
-//        System.out.println(page.title());
-        homePage =  loginPage.login(email, password );
+        homePage =  loginPage.loginValidCredentials();
         productPage = homePage.clickOnTheProductBtn();
         Assert.assertEquals(ProductPage.getAddedText(),"Your product has been added to cart.");
 

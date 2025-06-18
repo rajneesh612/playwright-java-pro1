@@ -1,42 +1,42 @@
 package com.thetestingacademy.ex01_Basics;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pages.ContactUsPage;
+import pages.CategoriesPage;
 import pages.HomePage;
 import pages.LoginPage;
-import pages.ProductPage;
 import utils.BaseTest;
 import utils.ConfigReader;
 
-public class contactUsTest extends BaseTest {
+public class categoriesTest extends BaseTest {
     private LoginPage loginPage;
     private HomePage homePage;
-    private ProductPage productPage;
-    private ContactUsPage contactUsPage;
-
+    private CategoriesPage categoriesPage;
 
 
     @BeforeClass
-    public void init() {
+    public void init () {
         setup();
         loginPage = new LoginPage(page);
     }
 
     @Test
-    public void contactSupport() {
+    public void categoriesCases () {
         String baseUrl = ConfigReader.get("url");
         loginPage.navigateTo(baseUrl);
         homePage = loginPage.loginValidCredentials();
-        contactUsPage = homePage.clickontheContactUsBtn();
-        contactUsPage.contact_support();
-        Assert.assertEquals(contactUsPage.get_success_msg_text(),"Success! Your details have been submitted successfully.");
+        categoriesPage = homePage.clickontheWomenBtn();
+        categoriesPage.clickontheTopsBtn();
+        Assert.assertEquals(categoriesPage.getCategoryTitleText(),"Tops Products");
+        categoriesPage = homePage.clickontheWomenBtn();
+        categoriesPage.clickontheDressBtn();
+        Assert.assertEquals(categoriesPage.getCategoryTitleText(),"Dress");
     }
-
     @AfterClass
     public void cleanup() {
         teardown();
     }
+
 }
+
